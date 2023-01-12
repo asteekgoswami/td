@@ -3,7 +3,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from django.urls import reverse_lazy
-
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.views import LoginView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -56,11 +57,15 @@ class TaskList(LoginRequiredMixin,ListView):
         context['search_input']=search_input
         return context
 
+
+@csrf_exempt
 class TaskDetail(DetailView):
     model=Task
     context_object_name='task'
     template_name='base/task.html'
 
+
+@csrf_exempt
 class TaskCreate(CreateView):
     model=Task
     fields = ['title','description','complete']
@@ -71,11 +76,14 @@ class TaskCreate(CreateView):
         return super(TaskCreate,self).form_valid(form)
 
 
+@csrf_exempt
 class TaskUpdate(UpdateView):
     model=Task
     fields = ['title','description','complete']
     success_url = reverse_lazy('tasks')
 
+
+@csrf_exempt
 class DeleteView(DeleteView):
     model=Task
     context_object_name="task"
