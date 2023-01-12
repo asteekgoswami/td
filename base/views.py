@@ -15,6 +15,7 @@ from .models import Task
 # Create your views here.
 
 
+@csrf_exempt
 class CustomLoginView(LoginView):
     template_name='base/login.html'
     fields = '__all__'
@@ -23,6 +24,7 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return  reverse_lazy('tasks')
 
+@csrf_exempt
 class RegisterPage(FormView):
     template_name='base/register.html'
     form_class=UserCreationForm
@@ -41,6 +43,7 @@ class RegisterPage(FormView):
         return super(RegisterPage,self).get(*args,**kwargs)
 
 
+@csrf_exempt
 class TaskList(LoginRequiredMixin,ListView):
     model=Task
     context_object_name="tasks"
