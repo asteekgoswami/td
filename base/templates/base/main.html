@@ -30,7 +30,20 @@
         p{
             color: #4b5156;
         }
-
+        .top{
+            background: linear-gradient(90deg, #e5917b 0%,#e97a68 43%, #e05a5a 100%);
+            border-radius: 5px 5px  5px 5px;
+        }
+        .top h1{
+            color: rgb(247,247,247);
+            margin: 0;
+            padding: 45px;
+            color: rgb(247,247,247);
+            display: flex;
+            justify-content: center;
+            font-family: 'Raleway',sans-serif;
+            font-weight: 700;
+        }
 
         .container{
             max-width: 550px;
@@ -140,7 +153,10 @@
 <body>
     <div class="container">
         {% block content %}
-
+            <div class="top">
+                <h1>MyTaskMate</h1>
+            </div>
+            <div class="space"></div>
         {% endblock content %}
 
     </div>
